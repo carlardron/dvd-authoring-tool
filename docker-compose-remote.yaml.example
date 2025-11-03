@@ -1,0 +1,36 @@
+services:
+  dvd-author:
+    image: dvd-author  # Replace with your built image name
+    container_name: dvd-author
+    ports:
+      - "3001:3001"
+    volumes:
+      # Mount a volume for your media files (replace with your paths)
+      - "/path/to/your/media:/media"
+      # Mount a volume for output files (replace with your paths)
+      - "/path/to/your/output:/output"
+      # Mount a volume for scratch files (temporary DVD structure) (replace with your paths)
+      - "/path/to/your/scratch:/scratch"
+    environment:
+      - ENVTEST=true
+      - ENV=production  # Or your preferred environment
+      - CLIENT_URL=http://your-client-app:3000  # Replace with your client URL if applicable
+    networks:
+      - app-network
+    command: tail -f /dev/null
+  # Uncomment and configure if you have a client app (e.g., web interface)
+  # dvd-web-client:
+  #   image: dvd-web-client  # Replace with your client image
+  #   container_name: dvd-web-client
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - NEXT_PUBLIC_WEBSOCKET_URL=http://dvd-author:3001
+  #   networks:
+  #     - app-network
+networks:
+  app-network:
+    # driver: bridge
+    # ipam:
+    #   config:
+    #     - subnet: 172.28.0.0/16

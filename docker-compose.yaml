@@ -1,0 +1,22 @@
+services:
+  dvd-author:
+    build: .
+    container_name: dvd-author
+    volumes:
+      # Mount your source code for real-time development
+      - ./src:/app/src
+      # Mount a volume for your media files
+      - ./media:/media
+      # Mount a volume for output files
+      - ./output:/output
+      # Mount a volume for scratch files (temporary DVD structure)
+      - ./scratch:/scratch
+      # Mount a volume for configuration files
+      - ./.vscode:/app/.vscode
+    ports:
+      - "9229:9229" # Expose debugging port
+      - "3001:3001"
+    environment:
+      - ENVTEST=true
+      - ENV=dev
+    command: tail -f /dev/null

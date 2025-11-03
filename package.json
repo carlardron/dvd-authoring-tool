@@ -1,0 +1,39 @@
+{
+  "name": "@carlardron/dvd-authoring-tool",
+  "version": "1.0.0",
+  "description": "Node.js DVD-Video authoring tool with interactive menus",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build-docker": "docker build -t dvd-author .",
+    "down": "docker compose down",
+    "up": "docker compose up -d",
+    "up-build": "docker compose up --build -d",
+    "exec": "docker exec dvd-author node --inspect=0.0.0.0:9229 src/core/author.js [args]",
+    "build-dvd": "docker exec dvd-author node src/core/author.js --video /media/video.mp4 --audio /media/audio.mp3 --still /media/cover.jpg --output /output/dvd.iso --scratch /scratch",
+    "shell": "docker exec -it dvd-author bash",
+    "test": "docker exec dvd-author node --inspect=0.0.0.0:9229 src/test/dvdTest.js",
+    "save-image": "docker save dvd-author -o dvd-author.tar"
+  },
+  "keywords": [
+    "dvd",
+    "authoring",
+    "video",
+    "encoding",
+    "ffmpeg",
+    "iso"
+  ],
+  "author": "Carl Ardron <carl@livingartifact.com.au>",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "eslint": "^9.27.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1",
+    "xml-formatter": "^3.6.6",
+    "yargs": "^17.7.2"
+  }
+}

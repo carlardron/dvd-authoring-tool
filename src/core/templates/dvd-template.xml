@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dvdauthor>
+  <vmgm>
+    <fpc>jump title 1;</fpc>
+    <menus lang="en">
+      <video aspect="16:9" widescreen="nopanscan"/>
+      <audio lang="en" content="normal"/>
+      <pgc entry="title">
+        <pre>
+        { 
+          g4 = 1; 
+          g8 = 0;
+          if (g12 ge 100) g12 = 0;
+          if (g12 ge 1) g1 = s1;
+          if (g12 ge 1) g2 = s2;
+          jump titleset 1 menu;
+        }
+        </pre>
+        <vob file="{{blackPath}}" />
+      </pgc>
+      <pgc>
+        <vob file="{{introPath}}" />
+        <vob file="{{blackPath}}" />
+        <post>
+        {
+          jump title 1;
+        }
+        </post>
+      </pgc>
+      <pgc>
+        <post>
+        { 
+          jump title 2;
+        }
+        </post>
+      </pgc>
+      <pgc>
+        <post>
+        {
+          jump titleset 1 menu;
+        }
+        </post>
+      </pgc>
+    </menus>
+  </vmgm>
+  <titleset>
+    <menus lang="en">
+      <video aspect="16:9" widescreen="nopanscan"/>
+      <audio lang="en" content="normal"/>
+      <subpicture>
+        <stream id="0" mode="widescreen" />
+        <stream id="1" mode="letterbox" />
+      </subpicture>
+      <pgc entry="root">
+        <vob file="{{blackPath}}" />
+        <pre>
+        {
+          if (g4 eq 1) jump menu 2;
+          jump menu 2;
+        }
+        </pre>
+        <post>
+        {
+          if (g4 eq 1) jump menu 2;
+          jump menu 2;
+        }
+        </post>
+      </pgc>
+      <pgc>
+        <vob file="{{menuPath}}" />
+        <button>jump vmgm menu 3;</button>
+        <pre>g4 = 1;</pre>
+        <post>jump cell 1;</post>
+      </pgc>
+    </menus>
+    <titles>
+      <video aspect="16:9" widescreen="nopanscan"/>
+      <audio lang="en" content="normal"/>
+      <pgc>
+        <vob file="{{blackPath}}" />
+        <pre>
+        {
+          if (g12 lt 100) g12 = 100;
+          g12 = g12 + 1;
+          if (g12 gt 102) call vmgm menu 3;
+          if (g12 gt 101) call vmgm menu 4; 
+          g1 = 0; 
+          g2 = 64; 
+          audio = g1; 
+          subtitle = g2;
+          call vmgm menu 2;
+        }
+        </pre>
+        <post>call vmgm menu 3;</post>
+      </pgc>
+    </titles>
+  </titleset>
+  <titleset>
+    <menus lang="en">
+      <video aspect="16:9" widescreen="nopanscan"/>
+      <audio lang="en" content="normal"/>
+      <pgc entry="root">
+        <vob file="{{blackPath}}" />
+        <post>
+        { 
+          g1 = s1; 
+          g2 = s2; 
+          g7 = s7;
+          jump vmgm menu 4;
+        }
+        </post>
+      </pgc>
+    </menus>
+    <titles>
+      <video aspect="16:9" widescreen="nopanscan"/>
+      <audio lang="en" content="normal"/>
+      <pgc>
+        <vob file="{{moviePath}}" chapters="{{chapters}}" />
+        <vob file="{{blackPath}}">
+          <cell chapter="yes"></cell>
+        </vob>
+        <pre>
+        {
+          g12 = 1; audio=g1; subtitle=g2;
+        }
+        </pre>
+        <post>
+        { 
+          g1 = s1; 
+          g2 = s2; 
+          g6 = 1; 
+          g4 = 1; 
+          g11 = g4;
+          call vmgm menu 4;
+        }
+        </post>
+      </pgc>
+    </titles>
+  </titleset>
+</dvdauthor>
