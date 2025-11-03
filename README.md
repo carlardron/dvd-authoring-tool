@@ -60,18 +60,35 @@ A Node.js-based tool for creating DVD-Video ISO files with interactive menus, ch
 
 ```
 /
-├── src/                  # Source code
-│   └── core/
-│       └── author.js     # Main DVD authoring script
+├── .github/              # GitHub-specific files (issues, workflows)
+│   ├── ISSUE_TEMPLATE/   # Bug/feature request templates
+│   └── workflows/        # CI/CD workflows (optional)
+├── .vscode/              # VS Code configuration
+├── examples/             # Usage examples
 ├── media/                # Input media files (ignored by git)
 ├── output/               # Generated DVD ISOs (ignored by git)
 ├── scratch/              # Temporary DVD structure files (ignored by git)
-├── examples/             # Usage examples
-├── .vscode/              # VS Code configuration
-├── package.json          # Node.js dependencies
+├── src/                  # Source code
+│   ├── core/             # Core authoring logic (main operation)
+│   │   ├── author.js     # Main DVD authoring script
+│   │   └── utils/        # Utility modules
+│   │       ├── encode/   # Encoding tools (FFmpeg)
+│   │       └── logger.js # Logging utilities
+│   ├── ini/              # Scaffolding for future standalone app (API/WebSocket); not used in base operation
+│   │   └── server.js     # Potential API endpoint and WebSocket for progress updates
+│   └── test/             # Test files
+├── index.js              # Scaffolding for future standalone app; not used in base operation
+├── .dockerignore         # Docker ignore rules
+├── .gitignore            # Git ignore rules
+├── CHANGELOG.md          # Version history
+├── CONTRIBUTING.md       # Contribution guidelines
 ├── Dockerfile            # Container definition
-├── docker-compose.yaml   # Container orchestration
-└── docker-compose-remote.yaml.example  # Remote deployment example
+├── LICENSE               # MIT license
+├── README.md             # This file
+├── docker-compose.yaml   # Local container orchestration
+├── docker-compose-remote.yaml.example  # Remote deployment example
+├── eslint.config.js      # Linting configuration
+└── package.json          # Node.js dependencies and scripts
 ```
 
 ## Command Line Options
