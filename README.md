@@ -36,11 +36,11 @@ A Node.js-based tool for creating DVD-Video ISO files with interactive menus, ch
    ```
 
 3. **Prepare media files**
-   Place your input files in the `media/` directory:
-   - Video file (MP4, MOV, etc.)
-   - Audio file (MP3, WAV, etc.)
-   - Still image for menu background (JPG, PNG)
-   - Optional: Intro video
+   Place your input files in a directory accessible to the Docker container (e.g., `media/` for convenience, as mapped in `docker-compose.yaml`). Paths can be specified to any location the container can access:
+   - **Video file** (MP4, MOV, etc.): Preferably HD (1920x1080 or higher) for best quality.
+   - **Audio file** (MP3, WAV, etc.): Often 48kHz 16-bit stereo; this is the recommended default for optimal compatibility.
+   - **Still image for menu background** (JPG, PNG): Should be HD (1920x1080) at minimum, larger resolutions accepted, but ensure 16:9 aspect ratio. The "Play" button is automatically generated and does not need to be included in the image.
+   - Optional: Intro video, eg. copyright video
 
 4. **Run the authoring tool**
    ```bash
